@@ -6,7 +6,7 @@
 
 
 To run these notebooks you need install:
-* Julia 1.0 (https://julialang.org/downloads/)
+* Julia 1.0 or 1.4 (https://julialang.org/downloads/)
 * Some notebooks also need these Julia packages
      * IJulia (https://github.com/JuliaLang/IJulia.jl)
      * NCDatasets (https://github.com/Alexander-Barth/NCDatasets.jl)
