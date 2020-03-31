@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/Alexander-Barth/MachineLearningNotebooks.svg?branch=master)](https://travis-ci.org/Alexander-Barth/MachineLearningNotebooks)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Alexander-Barth/MachineLearningNotebooks/master)
 
 # Machine Learning Notebooks
+
+
 
 To run these notebooks you need install:
 * Julia 1.0 (https://julialang.org/downloads/)
