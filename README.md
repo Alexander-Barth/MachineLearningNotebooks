@@ -19,5 +19,5 @@ These notebooks are also be run using binder:
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Alexander-Barth/MachineLearningNotebooks/master)
 
 
-The notebooks are best viewed using the (jupyter's nbviewer)[
-https://nbviewer.jupyter.org/github/Alexander-Barth/MachineLearningNotebooks/tree/master/] service. GitHub renders sometimes the equations incorrectly.
+The notebooks are best viewed using the [jupyter's nbviewer](
+https://nbviewer.jupyter.org/github/Alexander-Barth/MachineLearningNotebooks/tree/master/) service. GitHub renders sometimes the equations incorrectly.
