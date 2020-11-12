@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Alexander-Barth/MachineLearningNotebooks.svg?branch=master)](https://travis-ci.org/Alexander-Barth/MachineLearningNotebooks)
+[![Build Status](https://github.com/Alexander-Barth/MachineLearningNotebooks/workflows/CI/badge.svg)](https://github.com/Alexander-Barth/MachineLearningNotebooksHF-radar-assim-exercise/actions)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Alexander-Barth/MachineLearningNotebooks/master)
 
 # Machine Learning Notebooks
