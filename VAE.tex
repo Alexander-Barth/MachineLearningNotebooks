@@ -1,0 +1,133 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+
+
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+
+\begin{document}
+
+
+\section{Variational Autoencoders}
+
+\renewcommand{\vec}{\mathbf}
+
+We have a $\vec x^{(1)}, \vec x^{(2)}, ...$ samples from a (unknown) distribution $p(\vec x)$ and we want to generate more samples of this distribution.
+
+We can parameterize the distribution by a set of parameter $\theta$, $p_\theta(\vec x)$. The optimal choice of $\theta$ would maximize the probability:
+
+$$
+p_\theta(\vec x^{(1)}, \vec x^{(2)}, ...)  =  \prod_i  p_\theta( \vec x^{(i)})
+$$
+
+or maximize $\log( p_\theta( \vec x^{(i)})$ to maximize the likelihood of the sample.
+
+
+We introduce a latent vector $\vec z$ with a prescribed distribution. Often $\vec z$ is choosen to be Gaussian distributed.
+
+
+\newcommand{\Eq}{E_{\vec z \sim q_\theta(\vec z | \vec x)}}
+
+$$
+\log( p_\theta( \vec x) ) = \Eq[ \log( p_\theta(\vec x))  ]
+$$
+
+Using the Bayes rule: $ p_\theta(\vec x) = p_\theta(\vec x | \vec z) p_\theta(\vec z) / p_\theta(\vec z | \vec x)$
+
+$$
+ \log( p_\theta(\vec x))  = 
+\Eq\left[
+\log\left(
+\frac{ p_\theta(\vec x | \vec z) p_\theta(\vec z) } { p_\theta(\vec z | \vec x)}
+\right)
+\right]
+$$
+
+As the expectation is computed over $\vec z \sim q_\theta(\vec z | \vec x)$, we make this experession appear:
+
+
+$$
+\log( p_\theta(\vec x))  = 
+\Eq\left[
+\log\left(
+\frac{ p_\theta(\vec x | \vec z) p_\theta(\vec z) } { p_\theta(\vec z | \vec x)}
+\frac{ q_\theta(\vec z | \vec x) } { q_\theta(\vec z | \vec x)}
+\right)
+\right]
+$$
+
+
+Rearranging:
+
+$$
+\log( p_\theta(\vec x))  = 
+\Eq\left[
+  \log\left(
+  p_\theta(\vec x | \vec z)
+\frac{ p_\theta(\vec z) } { q_\theta(\vec z | \vec x)}
+\frac{ q_\theta(\vec z | \vec x) } { p_\theta(\vec z | \vec x) }
+\right)
+\right]
+$$
+
+Applying the logarithm to all three terms:
+
+$$
+\log( p_\theta(\vec x))  = 
+\Eq\left[\log\left( p_\theta(\vec x | \vec z) \right) \right]
+- \Eq\left[\log\left( \frac{ q_\theta(\vec z | \vec x) }{p_\theta(\vec z) } \right) \right]
++ \Eq\left[\log\left( \frac{ q_\theta(\vec z | \vec x) }{p_\theta(\vec z | \vec x)} \right) \right]
+$$
+
+Recall the definition of the Kullback–Leibler divergence for any $P$ and $Q$:
+
+$$
+D_\text{KL}(P \parallel Q) = \int_{\mathbb{R}^n} p(\vec x) \log\left(\frac{p(\vec x)}{q(\vec x)}\right)\, d^n x = E_{\vec x \sim p}
+\left[ \log\left(\frac{p(\vec x)}{q(\vec x)}\right)  \right]
+$$
+
+or here:
+
+$$
+D_\text{KL}( q_\theta(\vec z | \vec x) || p_\theta(\vec z)) =  \Eq\left[\log\left( \frac{ q_\theta(\vec z | \vec x) }{ p_\theta(\vec z) } \right) \right]
+$$
+$$
+D_\text{KL}(q_\theta(\vec z | \vec x) || p_\theta(\vec z | \vec x)) = 
+\Eq\left[\log\left( \frac{ q_\theta(\vec z | \vec x) }{p_\theta(\vec z | \vec x)} \right) \right]
+$$
+
+
+The expression for $\log( p_\theta(\vec x))$ becomes:
+
+$$
+\log( p_\theta(\vec x))  = 
+\Eq\left[\log\left( p_\theta(\vec x | \vec z) \right) \right]
+- D_\text{KL}( q_\theta(\vec z | \vec x) || p_\theta(\vec z))
++ D_\text{KL}(q_\theta(\vec z | \vec x) || p_\theta(\vec z | \vec x))
+$$
+
+
+Kullback–Leibler divergence is always positive (as it can be shown from the Jensen's inequality):
+
+
+$$
+\log( p_\theta(\vec x))  \ge 
+\Eq\left[\log\left( p_\theta(\vec x | \vec z) \right) \right]
+- D_{KL}( q_\theta(\vec z | \vec x) || p_\theta(\vec z))
+$$
+
+We droped the (postive) term $D_{KL}(q_\theta(\vec z | \vec x) || p_\theta(\vec z | \vec x))$ as it in intractable. The right-hand side of this inequality is called the variational lower bound.
+
+
+
+
+\end{document}
